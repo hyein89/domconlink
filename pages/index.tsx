@@ -7,6 +7,7 @@ export default function Home() {
       <Head>
         <title>Coming Soon</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
         {/* CSS dari public/home.css */}
         <link rel="stylesheet" href="/home.css" />
       </Head>
