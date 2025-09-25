@@ -37,12 +37,10 @@ export default function ImagePage({ imageUrl, pageTitle }: Props) {
         <title>{pageTitle}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content={pageTitle} />
-        <meta property="og:image" content={imageUrl} />
         <meta property="og:image:alt" content={pageTitle} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
-        <meta name="twitter:image" content={imageUrl} />
         <meta name="robots" content="noindex, nofollow" />
         <link rel="stylesheet" href="/loading.css" />
       </Head>
