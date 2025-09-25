@@ -82,7 +82,7 @@ export default function EncodePage({ allowed }: Props) {
 
       {/* Toast notif */}
       <div className={`toast ${showToast ? "show" : ""}`}>
-        URL berhasil disalin!
+       URL copied successfully!
       </div>
     </>
   );
