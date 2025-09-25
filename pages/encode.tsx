@@ -18,6 +18,7 @@ export default function EncodePage({ allowed }: Props) {
   const [imageUrl, setImageUrl] = useState("");
   const [title, setTitle] = useState("");
   const [result, setResult] = useState("");
+  const [showToast, setShowToast] = useState(false);
 
   if (!allowed) return null;
 
@@ -34,7 +35,8 @@ export default function EncodePage({ allowed }: Props) {
   const copyToClipboard = async () => {
     if (result) {
       await navigator.clipboard.writeText(result);
-      alert("URL disalin!");
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 2000);
     }
   };
 
@@ -43,46 +45,44 @@ export default function EncodePage({ allowed }: Props) {
       <Head>
         <title>Private Encoder</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="/styles.css" />
       </Head>
-      <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-        <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-6">
-          <h1 className="text-2xl font-bold mb-4 text-center">
-            Buat Link Gambar
-          </h1>
-          <label className="block mb-2 font-semibold">URL Gambar</label>
-          <input
-            type="text"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            className="w-full border rounded-md p-2 mb-4"
-            placeholder="https://example.com/foto.jpg"
-          />
-          <label className="block mb-2 font-semibold">Judul / Title</label>
-          <input
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            className="w-full border rounded-md p-2 mb-4"
-            placeholder="Judul Halaman"
-          />
-          <button
-            onClick={generate}
-            className="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700"
-          >
-            Generate URL
-          </button>
-          {result && (
-            <div className="mt-4">
-              <p className="break-words text-sm text-gray-700">{result}</p>
-              <button
-                onClick={copyToClipboard}
-                className="mt-2 w-full bg-green-600 text-white p-2 rounded-md hover:bg-green-700"
-              >
-                Copy URL
-              </button>
-            </div>
-          )}
-        </div>
+      <div className="container">
+        <h1>Buat Link Gambar</h1>
+
+        <label>URL Gambar</label>
+        <input
+          type="text"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+          placeholder="https://example.com/foto.jpg"
+        />
+
+        <label>Judul / Title</label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Judul Halaman"
+        />
+
+        <button onClick={generate} className="btn-generate">
+          Generate URL
+        </button>
+
+        {result && (
+          <div className="result">
+            <p>{result}</p>
+            <button onClick={copyToClipboard} className="btn-copy">
+              Copy URL
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Toast notif */}
+      <div className={`toast ${showToast ? "show" : ""}`}>
+        URL berhasil disalin!
       </div>
     </>
   );
