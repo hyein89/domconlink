@@ -19,3 +19,4 @@ export function decodeBase58(code: string): string {
   const bytes = bs58.decode(code);
   return Buffer.from(bytes).toString("utf8");
 }
+
