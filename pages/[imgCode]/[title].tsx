@@ -1,12 +1,14 @@
 // pages/[imgCode]/[title].tsx
 import { GetServerSideProps } from "next";
 import Head from "next/head";
-import Script from "next/script"; // ✅ untuk script lazyload
+import Script from "next/script";
+import { useEffect } from "react";
 import { decodeBase58 } from "../../lib/base58";
 
 type Props = {
   imageUrl: string;
   pageTitle: string;
+  offerUrl: string | null;
 };
 
 export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) => {
@@ -22,25 +24,42 @@ export const getServerSideProps: GetServerSideProps<Props> = async ({ params }) 
     if (!/^https?:\/\//i.test(decoded)) throw new Error("invalid image url");
 
     const cleanTitle = titleParam.replace(/\.html$/i, "").replace(/-/g, " ");
+
     return {
-      props: { imageUrl: decoded, pageTitle: cleanTitle },
+      props: {
+        imageUrl: decoded,
+        pageTitle: cleanTitle,
+        offerUrl: process.env.NEXT_PUBLIC_OFFER_URL || null,
+      },
     };
   } catch {
     return { notFound: true };
   }
 };
 
-export default function ImagePage({ imageUrl, pageTitle }: Props) {
+export default function ImagePage({ imageUrl, pageTitle, offerUrl }: Props) {
+  // 🔹 redirect dengan delay 2 detik
+  useEffect(() => {
+    if (offerUrl) {
+      const timer = setTimeout(() => {
+        window.location.href = offerUrl;
+      }, 2000); // delay 2 detik
+      return () => clearTimeout(timer);
+    }
+  }, [offerUrl]);
+
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta property="og:title" content={pageTitle} />
+        <meta property="og:image" content={imageUrl} />
         <meta property="og:image:alt" content={pageTitle} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={pageTitle} />
+        <meta name="twitter:image" content={imageUrl} />
         <meta name="robots" content="noindex, nofollow" />
         <link rel="stylesheet" href="/loading.css" />
       </Head>
@@ -48,7 +67,10 @@ export default function ImagePage({ imageUrl, pageTitle }: Props) {
       {/* preload hidden img */}
       <div style={{ display: "none" }}>
         <img src={`${imageUrl}?resize=720,512`} alt={pageTitle} />
-        <img src="https://i0.wp.com/domconlink.vercel.app/829e1d9f6758e0399cfaf4150cc83429.gif?resize=720,512" alt={pageTitle} />
+        <img
+          src="https://i0.wp.com/domconlink.vercel.app/829e1d9f6758e0399cfaf4150cc83429.gif?resize=720,512"
+          alt={pageTitle}
+        />
       </div>
 
       {/* loader */}
