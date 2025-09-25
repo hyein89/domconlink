@@ -1,12 +1,11 @@
 // lib/base58.ts
-// Utility untuk encode/decode string (misalnya URL) ke/dari Base58.
+// Base58 encode/decode tanpa perlu type declarations
 
-import bs58 from "bs58";
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const bs58 = require("bs58");
 
 /**
- * Encode string UTF-8 menjadi Base58.
- * @param text string biasa (contoh: URL)
- * @returns string Base58
+ * Encode string UTF-8 menjadi Base58
  */
 export function encodeBase58(text: string): string {
   const bytes = Buffer.from(text, "utf8");
@@ -14,9 +13,7 @@ export function encodeBase58(text: string): string {
 }
 
 /**
- * Decode string Base58 menjadi UTF-8.
- * @param code string Base58
- * @returns string hasil decode
+ * Decode string Base58 ke UTF-8
  */
 export function decodeBase58(code: string): string {
   const bytes = bs58.decode(code);
