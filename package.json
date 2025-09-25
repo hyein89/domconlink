@@ -11,14 +11,13 @@
   "dependencies": {
     "next": "14.2.3",
     "react": "18.3.1",
-    "react-dom": "18.3.1"
+    "react-dom": "18.3.1",
+    "bs58": "^5.0.0"
   },
   "devDependencies": {
-    "@types/node": "20.12.7",
-    "@types/react": "18.3.3",
-    "@types/react-dom": "18.3.0",
-    "typescript": "5.4.5",
-    "eslint": "8.57.0",
-    "eslint-config-next": "14.2.3"
+    "@types/node": "^20.11.19",
+    "@types/react": "^18.2.33",
+    "@types/react-dom": "^18.2.14",
+    "typescript": "^5.4.5"
   }
 }
