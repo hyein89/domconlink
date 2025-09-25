@@ -36,7 +36,7 @@ export default function Document() {
             <img
               src="//sstatic1.histats.com/0.gif?4828760&101"
               alt="free hit counter script"
-              border="0"
+              style={{ border: "0" }}
             />
           </a>
         </noscript>
