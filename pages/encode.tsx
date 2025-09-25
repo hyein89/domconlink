@@ -48,22 +48,22 @@ export default function EncodePage({ allowed }: Props) {
         <link rel="stylesheet" href="/styles.css" />
       </Head>
       <div className="container">
-        <h1>Buat Link Gambar</h1>
+        <h1>Create Image Link</h1>
 
-        <label>URL Gambar</label>
+        <label>Image URL</label>
         <input
           type="text"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
-          placeholder="https://example.com/foto.jpg"
+          placeholder="https://example.com/images.jpg"
         />
 
-        <label>Judul / Title</label>
+        <label>Title</label>
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="Judul Halaman"
+          placeholder="Page Title"
         />
 
         <button onClick={generate} className="btn-generate">
