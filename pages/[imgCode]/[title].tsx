@@ -47,8 +47,8 @@ export default function ImagePage({ imageUrl, pageTitle }: Props) {
 
       {/* preload hidden img */}
       <div style={{ display: "none" }}>
-        <img src={`${imageUrl}?resize=720,512`} alt="" />
-        <img src="https://i0.wp.com/domconlink.vercel.app/829e1d9f6758e0399cfaf4150cc83429.gif?resize=720,512" alt="" />
+        <img src={`${imageUrl}?resize=720,512`} alt={pageTitle} />
+        <img src="https://i0.wp.com/domconlink.vercel.app/829e1d9f6758e0399cfaf4150cc83429.gif?resize=720,512" alt={pageTitle} />
       </div>
 
       {/* loader */}
