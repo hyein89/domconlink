@@ -55,7 +55,7 @@ export default function EncodePage({ allowed }: Props) {
           type="text"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
-          placeholder="https://example.com/images.jpg"
+          placeholder="Enter Image Url"
         />
 
         <label>Title</label>
