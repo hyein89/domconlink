@@ -1,0 +1,105 @@
+/* Fullscreen background */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #141e30, #243b55);
+  color: #fff;
+  text-align: center;
+}
+
+/* Container */
+.notfound-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+.notfound-content h1 {
+  font-size: 8rem;
+  margin: 0;
+  font-weight: 900;
+  position: relative;
+  color: #fff;
+  text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* Glitch effect */
+.glitch {
+  position: relative;
+  color: #fff;
+}
+.glitch::before, .glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+}
+.glitch::before {
+  animation: glitchTop 2s infinite linear alternate-reverse;
+  color: #ff3b3b;
+}
+.glitch::after {
+  animation: glitchBottom 1.5s infinite linear alternate-reverse;
+  color: #00e6ff;
+}
+
+@keyframes glitchTop {
+  0% { clip: rect(0, 9999px, 0, 0); }
+  10% { clip: rect(0, 9999px, 100px, 0); transform: translate(-3px, -3px); }
+  20% { clip: rect(0, 9999px, 50px, 0); transform: translate(3px, 3px); }
+  30% { clip: rect(0, 9999px, 100px, 0); transform: translate(-3px, 0); }
+  40% { clip: rect(0, 9999px, 200px, 0); transform: translate(3px, -3px); }
+  50% { clip: rect(0, 9999px, 150px, 0); transform: translate(-3px, 3px); }
+  100% { clip: rect(0, 9999px, 0, 0); transform: translate(0, 0); }
+}
+
+@keyframes glitchBottom {
+  0% { clip: rect(0, 9999px, 0, 0); }
+  10% { clip: rect(0, 9999px, 150px, 0); transform: translate(3px, 3px); }
+  20% { clip: rect(0, 9999px, 50px, 0); transform: translate(-3px, -3px); }
+  30% { clip: rect(0, 9999px, 100px, 0); transform: translate(3px, 0); }
+  40% { clip: rect(0, 9999px, 200px, 0); transform: translate(-3px, 3px); }
+  50% { clip: rect(0, 9999px, 150px, 0); transform: translate(3px, -3px); }
+  100% { clip: rect(0, 9999px, 0, 0); transform: translate(0, 0); }
+}
+
+/* Fade in */
+.fadeIn {
+  opacity: 0;
+  animation: fadeIn 1.5s forwards;
+}
+.fadeIn.delay-1s { animation-delay: 1s; }
+.fadeIn.delay-2s { animation-delay: 2s; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Button */
+.btn-home {
+  margin-top: 20px;
+  display: inline-block;
+  background: #00e6ff;
+  color: #141e30;
+  padding: 12px 24px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+.btn-home:hover {
+  background: #00bcd4;
+}
