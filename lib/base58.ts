@@ -1,24 +1,23 @@
 // lib/base58.ts
-const ALPHABET = '123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz';
+import bs58 from "bs58";
 
-export function encodeBase58(buffer: string): string {
-  let num = BigInt('0x' + Buffer.from(buffer).toString('hex'));
-  let encoded = '';
-  while (num > 0) {
-    const rem = Number(num % 58n);
-    num /= 58n;
-    encoded = ALPHABET[rem] + encoded;
-  }
-  return encoded || '1';
+/**
+ * Encode string (misal URL) ke base58
+ * @param text string yang mau di-encode
+ * @returns kode base58
+ */
+export function encodeBase58(text: string): string {
+  // Buffer.from akan membuat buffer UTF-8 dari string
+  const buffer = Buffer.from(text, "utf8");
+  return bs58.encode(buffer);
 }
 
-export function decodeBase58(str: string): string {
-  let num = 0n;
-  for (const char of str) {
-    const idx = ALPHABET.indexOf(char);
-    if (idx === -1) throw new Error('Invalid base58 character');
-    num = num * 58n + BigInt(idx);
-  }
-  const hex = num.toString(16);
-  return Buffer.from(hex.length % 2 ? '0' + hex : hex, 'hex').toString();
+/**
+ * Decode base58 kembali ke string
+ * @param code base58 string
+ * @returns string asli
+ */
+export function decodeBase58(code: string): string {
+  const buffer = bs58.decode(code);
+  return Buffer.from(buffer).toString("utf8");
 }
