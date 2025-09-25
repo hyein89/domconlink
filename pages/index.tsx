@@ -1,6 +1,5 @@
 // pages/index.tsx
 import Head from "next/head";
-import "/home.css"; // pastikan path sesuai
 
 export default function Home() {
   return (
@@ -8,6 +7,7 @@ export default function Home() {
       <Head>
         <title>Coming Soon</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+         <link rel="stylesheet" href="/home.css" />
       </Head>
 
       <div className="container text-center">
