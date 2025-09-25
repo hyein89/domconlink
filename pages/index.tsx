@@ -7,7 +7,6 @@ export default function Home() {
         <title>Coming Soon</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/home.css" />
-        <link rel="icon" href="/shortlink.png"/>
       </Head>
 
       <main className="coming-soon">
